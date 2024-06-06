@@ -11,6 +11,7 @@ async function generateNewURL(req, res) {
         shortId: shortID,
         redirectUrl: req.body.redirectUrl,
         visitTime: [],
+        createdby: req.user._id,
     });
     return res.render('GET', { id: shortID });
     // return res.status(201).json({ shortId: shortID });

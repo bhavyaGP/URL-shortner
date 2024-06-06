@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>URL Shortener</title>
     <style>
         body {
-            font-family: sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -17,14 +17,23 @@
             background-color: #f4f4f4;
         }
 
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
         h1 {
             text-align: center;
+            color: #333;
+            margin-bottom: 20px;
         }
 
         form {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         input {
@@ -32,6 +41,7 @@
             width: 300px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            margin-right: 10px;
         }
 
         button {
@@ -42,18 +52,91 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Modified theme */
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
     </style>
 </head>
 
 <body>
-    <div>
-        <h1>URl shortner</h1>
-
-        <form METHOD="POST" action="/url">
-            <input type="text" name="redirectUrl" placeholder="https://example.com">
+    <div class="container">
+        <h1>URL Shortener</h1>
+        <form method="POST" action="/url">
+            <input type="text" name="redirectUrl" placeholder="https://example.com" required>
             <button type="submit">Shorten</button>
         </form>
-
+        <div>
+            <h1>URLs</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sr No.</th>
+                        <th>Short ID</th>
+                        <th>Redirect URL</th>
+                        <th>Visit Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% urls.forEach((url, index)=> { %>
+                        <tr>
+                            <td>
+                                <%= index + 1 %>
+                            </td>
+                            <td><a href="http://localhost:8000/get/<%= url.shortId %>" target="_blank">
+                                    <%= url.shortId %>
+                                </a></td>
+                            <td><a href="<%= url.redirectUrl %>" target="_blank">
+                                    <%= url.redirectUrl %>
+                                </a></td>
+                            <td>
+                                <%= url.visitTime.length %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 

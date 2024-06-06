@@ -15,9 +15,12 @@ const urlSchema = new mongoose.Schema({
         required: true
     },
     visitTime: [{ timestamp: { type: String } }],
-
+    createdby: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
 },
     { timestamps: true }
 );
-const URL= mongoose.model('URL', urlSchema);
+const URL = mongoose.model('URL', urlSchema);
 module.exports = URL;
