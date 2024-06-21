@@ -3,32 +3,82 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shortened URL</title>
     <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
         body {
-            font-family: sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f4f4f4;
+            background-color: #121212;
+            animation: fadeIn 0.6s ease-in-out;
         }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.5s ease-in-out;
+        }
+
         h1 {
             text-align: center;
+            color: #333333;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.2em;
+            color: #333333;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        a {
+            color: #00bfa5;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+
+        a:hover {
+            color: #00897b;
         }
     </style>
 </head>
 
 <body>
-    <div>
-        <h1>Your Shortern URL</h1>
+    <div class="container">
+        <h1>Your Shortened URL</h1>
         <% if(locals.id){ %>
             <p>Short URL is: <a href="http://localhost:8000/get/<%= locals.id %>">http://localhost:8000/get/<%=
                         locals.id %></a></p>
-            <% } %>
+        <% } %>
     </div>
 </body>
 

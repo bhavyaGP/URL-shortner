@@ -1,7 +1,8 @@
 const { getUser } = require('../services/auth');
 
 async function restrictTologinUseronly(req, res, next) {
-    const userid = req.cookies.uid;
+    const userid = req.cookies?.uid;
+    // console.log(userid);
     if (!userid) {
         return res.redirect('/login')
     }
@@ -25,6 +26,5 @@ async function checkAuth(req, res, next) {
 }
 
 module.exports = {
-    restrictTologinUseronly,checkAuth
-
+    restrictTologinUseronly, checkAuth
 }

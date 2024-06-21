@@ -1,6 +1,9 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const mongoUrl = 'mongodb://localhost:27017/URLshortener';
+// const mongoUrl = process.env.mongoUrl ;
 mongoose.set('strictQuery', true);
+
 //connect file- require
 mongoose.connect(mongoUrl,
     {

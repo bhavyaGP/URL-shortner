@@ -9,7 +9,7 @@ async function HandleUserSignSignUP(req, res) {
         username,
         email,
         password
-        
+
     });
     return res.redirect('/')
 }
@@ -22,9 +22,11 @@ async function HandleUserLogin(req, res) {
     }
 
     //making a new session id with uid
-    const sessionId = uuidv4();
-    setUser(sessionId, user);
-    res.cookie('uid', sessionId);
+    // const sessionId = uuidv4(); 
+    // setUser(sessionId, user);
+    const token = setUser(user);
+    // res.cookie('uid', sessionId);
+    res.cookie('uid', token, { httpOnly: true, secure: true });
     return res.redirect('/')
 }
 module.exports = {
