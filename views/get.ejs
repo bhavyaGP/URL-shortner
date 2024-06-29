@@ -10,6 +10,7 @@
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
@@ -20,6 +21,7 @@
                 transform: translateY(20px);
                 opacity: 0;
             }
+
             to {
                 transform: translateY(0);
                 opacity: 1;
@@ -75,10 +77,11 @@
 <body>
     <div class="container">
         <h1>Your Shortened URL</h1>
-        <% if(locals.id){ %>
-            <p>Short URL is: <a href="http://localhost:8000/get/<%= locals.id %>">http://localhost:8000/get/<%=
-                        locals.id %></a></p>
-        <% } %>
+        <% if(locals.id) { %>
+            <p>Short URL is: <a href="<%= protocol + '://' + host + '/get/' + id %>">
+                    <%= protocol + '://' + host + '/get/' + id %>
+                </a></p>
+            <% } %>
     </div>
 </body>
 

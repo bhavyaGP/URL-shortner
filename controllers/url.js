@@ -13,9 +13,14 @@ async function generateNewURL(req, res) {
         visitTime: [],
         createdby: req.user._id,
     });
-    return res.render('GET', { id: shortID });
+    return res.render('GET', {
+        protocol: req.protocol,
+        host: req.get('host'),
+        originalUrl: req.originalUrl,
+        id: shortID
+    });
     // return res.status(201).json({ shortId: shortID });
-}   
+}
 
 
 async function handleGetAnalytics(req, res) {
