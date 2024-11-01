@@ -25,7 +25,7 @@ async function generateNewURL(req, res) {
 
 async function handleGetAnalytics(req, res) {
     const shortId = req.params.shortId;
-    const result = await URL.findOne({ shortId }); //find the shortId in the database
+    const result = await URL.findOne({ shortId }); 
     return res.json({
         totalClicks: result.visitTime.length,
         analytics: result.visitTime,

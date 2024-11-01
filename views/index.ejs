@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL Shortener</title>
+    <!-- Add Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @keyframes fadeIn {
             from {
@@ -46,6 +48,8 @@
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
             animation: slideIn 0.5s ease-in-out;
+            width: 90%;
+            max-width: 800px;
         }
 
         h1 {
@@ -53,22 +57,43 @@
             color: #333333;
             margin-bottom: 20px;
             animation: fadeIn 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
 
-        form {
+        h1 i {
+            font-size: 1.8rem;
+            color: #ff6f00;
+        }
+
+        .input-group {
             display: flex;
             justify-content: center;
             margin-bottom: 20px;
             animation: fadeIn 1s ease-in-out;
+            position: relative;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: calc(50% - 140px);
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666666;
+            font-size: 1.1rem;
         }
 
         input {
-            padding: 10px;
+            padding: 12px;
+            padding-left: 40px;
             width: 300px;
             border: 1px solid #cccccc;
             border-radius: 5px;
             margin-right: 10px;
             transition: all 0.3s ease-in-out;
+            font-size: 1rem;
         }
 
         input:focus {
@@ -77,13 +102,17 @@
         }
 
         button {
-            padding: 10px 20px;
+            padding: 12px 20px;
             background-color: #ff6f00;
             color: #ffffff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
         }
 
         button:hover {
@@ -110,6 +139,10 @@
             color: #ffffff;
         }
 
+        th i {
+            margin-right: 8px;
+        }
+
         tr:nth-child(even) {
             background-color: #f0f0f0;
         }
@@ -122,30 +155,42 @@
             text-decoration: none;
             color: #00bfa5;
             transition: color 0.3s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
         tr td a:hover {
             color: #00897b;
+        }
+
+        .url-icon {
+            font-size: 0.9em;
+            color: #666;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>URL Shortener</h1>
+        <h1><i class="fas fa-link"></i> URL Shortener</h1>
         <form method="POST" action="/url">
-            <input type="text" name="redirectUrl" placeholder="https://example.com" required>
-            <button type="submit">Shorten</button>
+            <div class="input-group">
+                <input type="text" name="redirectUrl" placeholder="https://example.com" required>
+                <button type="submit">
+                    Shorten
+                </button>
+            </div>
         </form>
         <div>
-            <h1>URLs</h1>
+            <h1><i class="fas fa-list"></i> URLs</h1>
             <table>
                 <thead>
                     <tr>
-                        <th>Sr No.</th>
-                        <th>Short ID</th>
-                        <th>Redirect URL</th>
-                        <th>Visit Count</th>
+                        <th><i class="fas fa-hashtag"></i>Sr No.</th>
+                        <th><i class="fas fa-key"></i>Short ID</th>
+                        <th><i class="fas fa-link"></i>Redirect URL</th>
+                        <th><i class="fas fa-eye"></i>Visit Count</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -154,12 +199,18 @@
                             <td>
                                 <%= index + 1 %>
                             </td>
-                            <td><a href="http://localhost:8000/get/<%= url.shortId %>" target="_blank">
+                            <td>
+                                <a href="<%= protocol %>://<%= host %>/get/<%= url.shortId %>" target="_blank">
+                                    <i class="fas fa-external-link-alt url-icon"></i>
                                     <%= url.shortId %>
-                                </a></td>
-                            <td><a href="<%= url.redirectUrl %>" target="_blank">
+                                </a>
+                            </td>
+                            <td>
+                                <a href="<%= url.redirectUrl %>" target="_blank">
+                                    <i class="fas fa-arrow-right url-icon"></i>
                                     <%= url.redirectUrl %>
-                                </a></td>
+                                </a>
+                            </td>
                             <td>
                                 <%= url.visitTime.length %>
                             </td>

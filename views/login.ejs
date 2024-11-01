@@ -5,11 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogIn</title>
+    <!-- Add Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-       @keyframes fadeIn {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
@@ -20,6 +23,7 @@
                 transform: translateY(20px);
                 opacity: 0;
             }
+
             to {
                 transform: translateY(0);
                 opacity: 1;
@@ -51,8 +55,17 @@
         h1 {
             text-align: center;
             color: #333333;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             animation: fadeIn 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        h1 i {
+            font-size: 1.8rem;
+            color: #ff6f00;
         }
 
         form {
@@ -60,20 +73,37 @@
             flex-direction: column;
         }
 
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 12px;
+            top: calc(50% + 20px);
+            transform: translateY(-50%);
+            color: #666666;
+            font-size: 1.1rem;
+        }
+
         label {
             margin-top: 10px;
             color: #555555;
+            margin-bottom: 5px;
+            display: block;
         }
 
         input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
+            padding-left: 40px;
             margin-top: 5px;
-            margin-bottom: 20px;
             border: 1px solid #cccccc;
             border-radius: 4px;
             box-sizing: border-box;
             transition: border-color 0.3s, box-shadow 0.3s;
+            font-size: 1rem;
         }
 
         input:focus {
@@ -87,26 +117,76 @@
             border: none;
             cursor: pointer;
             margin-top: 10px;
+            padding: 14px;
             transition: background-color 0.3s;
+            font-size: 1rem;
+            font-weight: 500;
         }
 
         input[type="submit"]:hover {
             background-color: #e65100;
+        }
+
+        .signup-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            color: #ff6f00;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .signup-button:hover {
+            color: #e65100;
+        }
+
+        .submit-group {
+            position: relative;
+        }
+
+        .submit-group i {
+            position: absolute;
+            left: 20px;
+            top: calc(50% + 5px);
+            transform: translateY(-50%);
+            color: white;
+            font-size: 1.1rem;
+            z-index: 1;
+        }
+
+        .submit-button {
+            padding-left: 45px !important;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>LogIn</h1>
+        <h1><i class="fas fa-user-circle"></i> LogIn</h1>
         <form action="/user/login" method="post">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="example@gmail.com" required>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" id="email" placeholder="example@gmail.com" required>
+            </div>
 
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="password" required>
-            <input type="submit" value="LogIn">
+            <div class="input-group">
+                <label for="password">Password</label>
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" id="password" placeholder="password" required>
+            </div>
+
+            <div class="submit-group">
+                <i class="fas fa-sign-in-alt"></i>
+                <input type="submit" value="LogIn" class="submit-button">
+            </div>
         </form>
+        <a href="/signup" class="signup-button">
+            <i class="fas fa-user-plus"></i> Sign Up
+        </a>
     </div>
 </body>
 

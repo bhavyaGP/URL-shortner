@@ -25,7 +25,6 @@ app.use('/user', UserRoutes)
 app.use('/', checkAuth, staticRoutes);
 
 app.get('/get/:shortId', async (req, res) => {
-    //create let that old curretn date of string
     let currentDate = new Date().toISOString();
 
     const URLfromDB = await URL.findOneAndUpdate({
