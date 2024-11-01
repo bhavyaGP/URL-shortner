@@ -1,16 +1,11 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-// const mongoUrl = 'mongodb://localhost:27017/URLshortener';
-const mongoUrl = process.env.mongoUrl ;
+const mongoUrl = process.env.mongoUrl;
+
 mongoose.set('strictQuery', true);
 
-mongoose.connect(mongoUrl,
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }
-);
-//require-return object
+mongoose.connect(mongoUrl); // no options needed
+
 const db = mongoose.connection;
 
 db.on('connected', () => {
@@ -22,6 +17,5 @@ db.on('error', (err) => {
 db.on('disconnected', () => {
     console.log('Disconnected from MongoDB');
 });
-module.export = db;
 
-
+module.exports = db; // corrected export
