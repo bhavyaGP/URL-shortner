@@ -4,6 +4,7 @@ const URLRoutes = require('./routes/url');
 const port = process.env.port || 8000;
 const URL = require('./model/url');
 const db = require('./connect');
+const path= require('path');
 const staticRoutes = require('./routes/staticRoutes');
 const UserRoutes = require('./routes/user');
 const cookieParser = require('cookie-parser');
@@ -11,6 +12,7 @@ const { restrictTologinUseronly, checkAuth } = require('./middleware/auth')
 require('dotenv').config();
 
 //ejs
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('views', './views');
 app.use(express.static("views"));
