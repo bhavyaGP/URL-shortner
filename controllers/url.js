@@ -13,7 +13,7 @@ async function generateNewURL(req, res) {
         visitTime: [],
         createdby: req.user._id,
     });
-    return res.render('GET', {
+    return res.render('get', {
         protocol: req.protocol,
         host: req.get('host'),
         originalUrl: req.originalUrl,

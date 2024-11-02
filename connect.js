@@ -7,7 +7,7 @@ mongoose.set('strictQuery', true);
 mongoose.connect(mongoUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 10000,
+    serverSelectionTimeoutMS: 30000,
 });
 
 const db = mongoose.connection;
