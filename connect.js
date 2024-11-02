@@ -4,7 +4,9 @@ const mongoUrl = process.env.mongoUrl;
 
 mongoose.set('strictQuery', true);
 
-mongoose.connect(mongoUrl); // no options needed
+mongoose.connect(mongoUrl, {
+    serverSelectionTimeoutMS: 50000,
+}); 
 
 const db = mongoose.connection;
 
